@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -33,5 +34,38 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+
+    //circleimageview
+    implementation "de.hdodenhof:circleimageview:$circleImage_version"
+
+    //shimmer: Api de animação de view de carreamento encontrada em http://facebook.github.io/shimmer-android/
+    implementation "com.facebook.shimmer:shimmer:0.5.0"
+
+    // lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    //  ViewModelScope
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    //Converter do Retrofit para utilizar o Gson para tratar a resposta do servidor
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_gson_version"
+    // Interceptor para visualizar os logs das requisições do Retrofit
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+
+    //Coroutines adapter usado na configuração do retrofit
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$coroutines_adapter_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    implementation  "com.github.kittinunf.result:result-coroutines:$coroutines_result_version"
+
+    implementation "com.squareup.picasso:picasso:$picasso_version"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.cardview:cardview:$cardview_version"
+
+    //Dagger
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
 }
