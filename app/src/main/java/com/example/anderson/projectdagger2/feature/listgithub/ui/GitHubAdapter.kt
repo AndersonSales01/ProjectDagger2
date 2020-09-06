@@ -1,4 +1,4 @@
-package com.example.anderson.projectdagger2.feature.list.ui
+package com.example.anderson.projectdagger2.feature.listgithub.ui
 
 import android.content.Context
 import android.view.LayoutInflater

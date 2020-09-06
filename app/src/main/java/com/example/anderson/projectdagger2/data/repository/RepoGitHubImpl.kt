@@ -1,14 +1,25 @@
 package com.example.anderson.projectdagger2.data.repository
 
+import android.content.Context
+import android.util.Log
 import com.example.anderson.projectdagger2.data.model.Repository
+import com.example.anderson.projectdagger2.data.networking.NetworkConfig
+import com.example.anderson.projectdagger2.data.networking.endpoint.GitHubEndPoint
+import com.example.anderson.repository.model.entityrequest.ResponseDTO
+import javax.inject.Inject
 
-class RepoGitHubImpl: IRepoGitHub {
+class RepoGitHubImpl @Inject constructor(val context: Context) : IRepoGitHub {
 
-    override suspend fun loadRepository(page: Int): List<Repository> {
+    override suspend fun loadRepository(page: Int) =
+        NetworkConfig.provideApi(GitHubEndPoint::class.java,context).listRepository(page).await()
 
-        val listRepositorys = ArrayList<Repository>()
 
-//        var response = RepositoryApi.getInstance().create(RepositoryEndPoint::class.java).listRepository(page).await()
+
+//    override suspend fun loadRepository(page: Int): List<Repository>{
+//
+//        val listRepositorys = ArrayList<Repository>()
+//
+//        var response = NetworkConfig.provideApi(GitHubEndPoint::class.java,context).listRepository(page).await()
 //
 //
 //        response.let {
@@ -30,8 +41,14 @@ class RepoGitHubImpl: IRepoGitHub {
 //
 //            }
 //        }
+//
+//
+//        return listRepositorys
+//    }
 
-
-        return listRepositorys
+    override fun testDagger() {
+        Log.d("Dagger", "Pegou o DAgger")
     }
+
+
 }

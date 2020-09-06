@@ -1,10 +1,8 @@
-package com.example.anderson.projectdagger2.feature.list.ui
+package com.example.anderson.projectdagger2.feature.listgithub.ui
 
 import android.content.Context
-import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.anderson.projectdagger2.constants.Constants
 import com.example.anderson.projectdagger2.data.model.Repository
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_list_repository.view.*
