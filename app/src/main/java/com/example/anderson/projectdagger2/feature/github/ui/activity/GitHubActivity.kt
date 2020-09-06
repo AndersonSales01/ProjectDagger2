@@ -1,5 +1,6 @@
-package com.example.anderson.projectdagger2.feature.listgithub.ui
+package com.example.anderson.projectdagger2.feature.github.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
@@ -9,12 +10,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.anderson.projectdagger2.feature.BaseActivity
 import com.example.anderson.projectdagger2.R
+import com.example.anderson.projectdagger2.constants.Constants
+import com.example.anderson.projectdagger2.data.model.Repository
+import com.example.anderson.projectdagger2.feature.pullrequest.ui.IGitHubActivity
+import com.example.anderson.projectdagger2.feature.pullrequest.ui.activity.PullRequestActivity
 import com.example.anderson.projectdagger2.feature.di.UiComponent
-import com.example.anderson.projectdagger2.feature.listgithub.viewmodel.GitHubViewModel
+import com.example.anderson.projectdagger2.feature.github.ui.adapter.GitHubAdapter
+import com.example.anderson.projectdagger2.feature.github.viewmodel.GitHubViewModel
 import kotlinx.android.synthetic.main.activity_git_hub_main.*
 import javax.inject.Inject
 
-class GitHubActivity : BaseActivity() {
+class GitHubActivity : BaseActivity(),
+    IGitHubActivity {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -33,7 +40,6 @@ class GitHubActivity : BaseActivity() {
 
         uiComponent.inject(this)
 
-        // viewModel =  ViewModelProviders.of(this, viewModelFactory)[GitHubViewModel::class.java]
         initialize()
     }
 
@@ -47,7 +53,8 @@ class GitHubActivity : BaseActivity() {
     }
 
     override fun initViews() {
-        gitHubAdapter = GitHubAdapter(this)
+        gitHubAdapter =
+            GitHubAdapter(this,this)
 
         manager = LinearLayoutManager(this)
 
@@ -89,5 +96,12 @@ class GitHubActivity : BaseActivity() {
             }
 
         })
+    }
+
+    override fun toGoPullRequestScrenn(repository: Repository) {
+        val intent = Intent(this, PullRequestActivity::class.java)
+        intent.putExtra(Constants.NAME_OWNER, repository.author.name)
+        intent.putExtra(Constants.NAME_REPOSITORY, repository.name)
+        startActivity(intent)
     }
 }

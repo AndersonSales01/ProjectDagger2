@@ -1,14 +1,15 @@
-package com.example.anderson.projectdagger2.feature.listgithub.ui
+package com.example.anderson.projectdagger2.feature.github.ui.viewholder
 
 import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.anderson.projectdagger2.data.model.Repository
+import com.example.anderson.projectdagger2.feature.pullrequest.ui.IGitHubActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_list_repository.view.*
 
 
-class ViewHolderRepository(itemView: View, private val context: Context) : RecyclerView.ViewHolder(itemView) {
+class GitHubViewHolder(itemView: View, private val context: Context, private val iGitHubActivity: IGitHubActivity) : RecyclerView.ViewHolder(itemView) {
 
 
     fun bindView(repository: Repository) {
@@ -27,12 +28,9 @@ class ViewHolderRepository(itemView: View, private val context: Context) : Recyc
         txtDescription.text = repository.description
 
         getImagem(repository.author.urlAvatar)
-        //TODO: Criar interface de onclick
+
         itemView.setOnClickListener {
-//            val intent = Intent(context, PullRequestActivity::class.java)
-//            intent.putExtra(Constants.NAME_OWNER, repository.author.name)
-//            intent.putExtra(Constants.NAME_REPOSITORY, repository.name)
-//            context.startActivity(intent)
+            iGitHubActivity.toGoPullRequestScrenn(repository)
         }
     }
 

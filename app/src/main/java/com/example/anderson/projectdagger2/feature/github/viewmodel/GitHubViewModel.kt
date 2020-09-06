@@ -1,5 +1,6 @@
-package com.example.anderson.projectdagger2.feature.listgithub.viewmodel
+package com.example.anderson.projectdagger2.feature.github.viewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -15,7 +16,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class GitHubViewModel @Inject constructor(val repository: IRepoGitHub) : ViewModel() {
+class GitHubViewModel @Inject constructor(val repository: IRepoGitHub, val context: Context) : ViewModel() {
 
     private var listRepository = mutableListOf<Repository>()
 
@@ -27,6 +28,7 @@ class GitHubViewModel @Inject constructor(val repository: IRepoGitHub) : ViewMod
 
 
     fun callrequestRepository() {
+
         if (listRepository.size <= 0) {
 
             requestRepository()
@@ -35,6 +37,7 @@ class GitHubViewModel @Inject constructor(val repository: IRepoGitHub) : ViewMod
     }
 
     private fun requestRepository() {
+        showProgress.postValue(true)
         val listRepositorys = ArrayList<Repository>()
         showProgress.value = true
         viewModelScope.launch {
@@ -70,23 +73,6 @@ class GitHubViewModel @Inject constructor(val repository: IRepoGitHub) : ViewMod
                 }, failure = { error ->
                     Log.d("Error", "${error.toString()}")
                 })
-
-
-//                val onSuccess: suspend (ResponseDTO) -> Unit = { response ->
-//
-//                    if(response.repositoryList.isNotEmpty()){
-//                        liveDataListRepository.postValue(response.repositoryList)
-//                    }
-//
-//                    page++
-//                }
-//                val onFailure: suspend (Exception) -> Unit = { error ->
-//                    Log.d("Error Request", error.toString())
-//                }
-//
-//
-//                response.fold(onSuccess, onFailure)
-
 
                 showProgress.postValue(false)
             }

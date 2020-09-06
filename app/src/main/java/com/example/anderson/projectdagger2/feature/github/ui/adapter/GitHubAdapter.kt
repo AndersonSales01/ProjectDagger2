@@ -1,4 +1,4 @@
-package com.example.anderson.projectdagger2.feature.listgithub.ui
+package com.example.anderson.projectdagger2.feature.github.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.anderson.projectdagger2.R
 import com.example.anderson.projectdagger2.data.model.Repository
+import com.example.anderson.projectdagger2.feature.pullrequest.ui.IGitHubActivity
+import com.example.anderson.projectdagger2.feature.github.ui.viewholder.GitHubViewHolder
 
-class GitHubAdapter(val context: Context) : RecyclerView.Adapter<ViewHolderRepository>() {
+class GitHubAdapter(val context: Context,  val iGitHubActivity: IGitHubActivity) : RecyclerView.Adapter<GitHubViewHolder>() {
 
     private var listRepository: List<Repository> = mutableListOf()
 
@@ -16,18 +18,18 @@ class GitHubAdapter(val context: Context) : RecyclerView.Adapter<ViewHolderRepos
         notifyDataSetChanged()
     }
 
-    override fun onBindViewHolder(holder: ViewHolderRepository, position: Int) {
+    override fun onBindViewHolder(holderViewHolder: GitHubViewHolder, position: Int) {
         val repository = listRepository[position]
 
-        holder?.bindView(repository)
+        holderViewHolder?.bindView(repository)
     }
 
     override fun getItemCount(): Int {
         return listRepository.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderRepository {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GitHubViewHolder {
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_list_repository, parent, false)
-        return ViewHolderRepository(view,context)
+        return GitHubViewHolder(view, context,iGitHubActivity)
     }
 }

@@ -46,9 +46,7 @@ class RepoGitHubImpl @Inject constructor(val context: Context) : IRepoGitHub {
 //        return listRepositorys
 //    }
 
-    override fun testDagger() {
-        Log.d("Dagger", "Pegou o DAgger")
-    }
+
 
 
 }
