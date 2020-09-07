@@ -5,11 +5,11 @@ import com.example.anderson.projectdagger2.feature.github.ui.activity.GitHubActi
 import dagger.Subcomponent
 
 @Subcomponent(modules = [ViewModelModule::class])
-interface UiComponent {
+interface SubComponent {
 
     @Subcomponent.Factory
     interface Factory {
-        fun create(): UiComponent
+        fun create(): SubComponent
     }
     fun inject(activity: GitHubActivity)
     fun inject(activity: PullRequestActivity)

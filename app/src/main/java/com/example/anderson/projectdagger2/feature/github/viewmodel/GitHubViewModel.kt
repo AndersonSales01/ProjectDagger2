@@ -1,14 +1,18 @@
 package com.example.anderson.projectdagger2.feature.github.viewmodel
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.anderson.projectdagger2.constants.Constants
 import com.example.anderson.projectdagger2.data.model.Author
 import com.example.anderson.projectdagger2.data.model.Repository
 import com.example.anderson.projectdagger2.data.repository.IRepoGitHub
+import com.example.anderson.projectdagger2.data.repository.IRepoPullRquest
+import com.example.anderson.projectdagger2.feature.pullrequest.ui.activity.PullRequestActivity
 import com.example.anderson.repository.model.entityrequest.ResponseDTO
 import com.github.kittinunf.result.coroutines.SuspendableResult
 import kotlinx.coroutines.Dispatchers
@@ -83,6 +87,15 @@ class GitHubViewModel @Inject constructor(val repository: IRepoGitHub, val conte
 
         if (currentItems + scrollOutItems >= totalItems) {
             requestRepository()
+        }
+    }
+
+    fun toGoPullRequestScrenn(repository: Repository) {
+        if (repository != null) {
+            val intent = Intent(context, PullRequestActivity::class.java)
+            intent.putExtra(Constants.NAME_OWNER, repository.author.name)
+            intent.putExtra(Constants.NAME_REPOSITORY, repository.name)
+            context.startActivity(intent)
         }
     }
 

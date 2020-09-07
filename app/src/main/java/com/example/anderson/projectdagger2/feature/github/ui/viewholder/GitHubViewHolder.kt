@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.example.anderson.projectdagger2.data.model.Repository
-import com.example.anderson.projectdagger2.feature.pullrequest.ui.IGitHubActivity
+import com.example.anderson.projectdagger2.feature.github.ui.IGitHubActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_list_repository.view.*
 
@@ -30,7 +30,7 @@ class GitHubViewHolder(itemView: View, private val context: Context, private val
         getImagem(repository.author.urlAvatar)
 
         itemView.setOnClickListener {
-            iGitHubActivity.toGoPullRequestScrenn(repository)
+            iGitHubActivity.toGoPullRequestScreen(repository)
         }
     }
 

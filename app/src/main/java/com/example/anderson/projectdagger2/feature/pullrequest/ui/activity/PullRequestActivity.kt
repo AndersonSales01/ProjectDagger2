@@ -9,13 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anderson.projectdagger2.R
 import com.example.anderson.projectdagger2.constants.Constants
 import com.example.anderson.projectdagger2.feature.BaseActivity
+import com.example.anderson.projectdagger2.feature.pullrequest.ui.IPullRequestActivity
 import com.example.anderson.projectdagger2.feature.pullrequest.ui.adapter.PullRequestAdapter
 import com.example.anderson.projectdagger2.feature.pullrequest.viewmodel.PullRequestViewModel
 
 import kotlinx.android.synthetic.main.activity_pull_request.*
 import javax.inject.Inject
 
-class PullRequestActivity : BaseActivity() {
+class PullRequestActivity : BaseActivity(), IPullRequestActivity {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -31,7 +32,7 @@ class PullRequestActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pull_request)
 
-        uiComponent.inject(this)
+        subComponent.inject(this)
 
         initialize()
     }
@@ -50,7 +51,7 @@ class PullRequestActivity : BaseActivity() {
 
     override fun initViews() {
 
-        pullRequestAdapter = PullRequestAdapter(this)
+        pullRequestAdapter = PullRequestAdapter(this, this)
 
         recyclerView_pull_request.layoutManager = LinearLayoutManager(this)
         recyclerView_pull_request.adapter = pullRequestAdapter
@@ -83,5 +84,9 @@ class PullRequestActivity : BaseActivity() {
 
             }
         })
+    }
+
+    override fun openPageBrowser(urls: String) {
+        viewModel.openPageBrowser(urls)
     }
 }

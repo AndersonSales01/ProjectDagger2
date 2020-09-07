@@ -9,7 +9,7 @@ import dagger.Module
 import javax.inject.Singleton
 
 @Module
-abstract class DataModule {
+abstract class RepositoryModule {
 
     // Nessa funcao estou dizendo pro dagger se alguem tiver precisando de uma interface IRepoGitHub, entao dagger retorna RepoGitHubImpl.
     @Singleton

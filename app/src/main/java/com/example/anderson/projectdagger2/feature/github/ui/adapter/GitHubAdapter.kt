@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.anderson.projectdagger2.R
 import com.example.anderson.projectdagger2.data.model.Repository
-import com.example.anderson.projectdagger2.feature.pullrequest.ui.IGitHubActivity
+import com.example.anderson.projectdagger2.feature.github.ui.IGitHubActivity
 import com.example.anderson.projectdagger2.feature.github.ui.viewholder.GitHubViewHolder
 
 class GitHubAdapter(val context: Context,  val iGitHubActivity: IGitHubActivity) : RecyclerView.Adapter<GitHubViewHolder>() {

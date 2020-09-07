@@ -1,6 +1,9 @@
 package com.example.anderson.projectdagger2.feature.pullrequest.viewmodel
 
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.*
 import com.example.anderson.projectdagger2.data.repository.IRepoPullRquest
@@ -18,7 +21,7 @@ import javax.inject.Inject
 /**
  * Created by Anderson on 06/09/2020.
  */
-class PullRequestViewModel@Inject constructor(val repository: IRepoPullRquest) : ViewModel(), LifecycleObserver {
+class PullRequestViewModel@Inject constructor(val repository: IRepoPullRquest, val context: Context) : ViewModel(), LifecycleObserver {
 
     private var listPullRequest = mutableListOf<PullRequest>()
 
@@ -83,6 +86,11 @@ class PullRequestViewModel@Inject constructor(val repository: IRepoPullRquest) :
         }
     }
 
+     fun openPageBrowser (urls: String) {
+        val uris = Uri.parse(urls)
+        val intents = Intent(Intent.ACTION_VIEW, uris)
+        context.startActivity(intents)
+    }
 
     fun getListPullRequests(): LiveData<List<PullRequest>> = liveDataListPullRequestRepository
     fun showProgress(): LiveData<Boolean> = showProgress

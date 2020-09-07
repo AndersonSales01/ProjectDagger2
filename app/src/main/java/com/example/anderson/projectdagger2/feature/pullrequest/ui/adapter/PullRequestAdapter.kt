@@ -5,13 +5,14 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.anderson.projectdagger2.R
+import com.example.anderson.projectdagger2.feature.pullrequest.ui.IPullRequestActivity
 import com.example.anderson.projectdagger2.feature.pullrequest.ui.viewholder.ViewHolderPullRequest
 import com.example.anderson.repository.model.entity.PullRequest
 
 /**
  * Created by Anderson on 06/09/2020.
  */
-class PullRequestAdapter( val context: Context) : RecyclerView.Adapter<ViewHolderPullRequest>() {
+class PullRequestAdapter( val context: Context, private val iPullRequest: IPullRequestActivity) : RecyclerView.Adapter<ViewHolderPullRequest>() {
 
     private var listPullRequest: List<PullRequest> = mutableListOf()
 
@@ -32,6 +33,6 @@ class PullRequestAdapter( val context: Context) : RecyclerView.Adapter<ViewHolde
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderPullRequest {
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.item_list_pull_request, parent, false)
-        return ViewHolderPullRequest(view,context)
+        return ViewHolderPullRequest(view,context,iPullRequest)
     }
 }
