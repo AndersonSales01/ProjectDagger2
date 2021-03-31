@@ -1,5 +1,6 @@
 package com.example.anderson.repository.model.entityrequest
 
+import com.example.anderson.projectdagger2.data.modelserver.OwnerResult
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -15,5 +16,6 @@ class RepositoryResult(@SerializedName("name")
                        @SerializedName("watchers")
                          val numberStarts: Int = 0,
                        @SerializedName("owner")
-                         val owner: OwnerResult) {
+                         val owner: OwnerResult
+) {
 }

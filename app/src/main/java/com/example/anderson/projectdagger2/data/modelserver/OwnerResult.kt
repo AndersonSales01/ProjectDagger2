@@ -1,4 +1,4 @@
-package com.example.anderson.repository.model.entityrequest
+package com.example.anderson.projectdagger2.data.modelserver
 
 import com.google.gson.annotations.SerializedName
 
